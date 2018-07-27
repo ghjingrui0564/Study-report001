@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Point{
+private:
+	int x;
+	int y;
+public:
+	Point(int xx=0,int yy=0):x(xx),y(yy){};
+	Point(Point &p);
+	int getX(){return x;}
+	int getY(){return y;}
+};
+Point::Point(Point &p){
+	x=p.x;
+	y=p.y;
+	cout<<"calling the copy constructor of Point"<<endl;
+}
+class Line{
+private:
+	Point p1;
+	Point p2;
+	double len;
+public:
+	Line(Point xp1,Point xp2):p1(xp1),p2(xp2){
+		cout<<"calling constructor of Line"<<endl;
+		double x=static_cast<double>(p1.getX()-p2.getX());
+		double y=static_cast<double>(p1.getY()-p2.getY());
+		len=sqrt(x*x+y*y);
+	}
+	Line(Line &l);
+	double getLen(){return len;}
+};
+Line::Line(Line &l):p1(l.p1),p2(l.p2){
+	cout<<"calling the copy constructor of Line"<<endl;
+	len=l.len;
+}
+int main(){
+	Point myp1(1,1),myp2(4,5);
+	Line line(myp1,myp2);
+	Line line2(line);
+	cout<<"the length of the line is:"<<line.getLen()<<endl;
+	cout<<"the length of the line2 is"<<line2.getLen()<<endl;
+	return 0;
+}
