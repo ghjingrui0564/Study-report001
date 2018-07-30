@@ -1,0 +1,79 @@
+/*-----------------------------------------*/
+float vertices[]={
+	-0.5f,-0.5f,0.0f,
+	 0.5f,-0.5f,0.0f,
+	 0.0f,0.5f,0.0f
+};
+//生成一个VBO对象
+unsigned int VBO;
+glGenBuffers(1,&VBO);
+//绑定对象类型
+glBindBuffer(GL_ARRAY_BUFFER,VBO);
+//将顶点数据复制到缓冲内存中
+glBufferData(GL_ARRAY_BUFFER,sizeof(vertices),vertices,GL_STATIC_DRAW);
+
+//-----------------顶点着色器-------------------------
+#version 330 core
+layout(location=0) in vec3 aPos;
+/*为设置顶点着色器的输出，必须把位置数据赋值给预定义的
+gl_Position变量，它在幕后是vec4类型*/
+void main()
+{
+	gl_Position=vec4(aPos.x,aPos.y,aPos.z,1.0);
+}
+
+//------------------编译着色器------------------------
+
+//用glCreateShader创建着色器
+unsigned int vertexShader;
+verShader=glCreateShader(GL_VERTEX_SHADER);
+
+//着色器源码附加到着色器对象上，然后编译
+glshaderSource(vertesShader,1,&vertexShaderSource,NULL);
+glCompileShader(vertexShader);
+
+//-------------------片段着色器-----------------------
+#version 330 core
+out vec4 Fragcolor;
+void main()
+{
+	FragColor=vec4(1.0f,0.5f,0.2f,1.0f);
+}
+//编译片段着色器，用GL_FRAGMENT_SHADER常量作为着色器类型
+unsigned int fragmentShader;
+fragmentShader=glCreateShader(GL_FRAMENT_SHADER);
+glShaderSource(fragmentShader,1,&fragmentShaderSource,NULL);
+glCompileShader(fragmentShader);
+
+//--------------------着色器程序----------------------
+//这是多个着色器合并之后并最终连接完成的最终版本
+unsigned int shaderProgram;
+shaderProgram=glCreateProgram();
+
+//将编译的着色器附加到程序对象上，然后用glLinkProgram链接
+glAttachShader(shaderProgram,vertexShader);
+glAttachShader(shaderProgram,fragmentShader);
+glLinkProgram(shaderProgram);
+
+//调用glUseProgram后，每个着色器调用和渲染调用都会使用这个程序对象
+glUseProgram(shaderProgram);
+
+//链接后删除着色器对象
+glDeleteShader(vertexShader);
+glDeleteShader(fragmentShader);
+
+//---------------------链接顶点属性--------------------
+
+//解析顶点数据
+glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,3*sizeof(float),(void*)0);
+glEnableeVertexAttribArray(0);
+
+//----------------------顶点数组对象-------------------
+//创建VAO
+unsigned int VAO;
+glGenVertextArray(1,&VAO);
+
+//绘制图元
+glUseProgram(shaderProgram);
+glbindVertexArray(VAO);
+glDrawArrays(GL_TRIANGELS,0,3);
