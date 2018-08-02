@@ -1,0 +1,35 @@
+//CreditAccount.h
+#ifndef _CREDITACCOUNT_H_
+#define _CREDITSACCOUNT_H_
+#include"date.h"
+#include"accumulator.h"
+#include"account.h"
+#include<string>
+class CreditAccount:public Account{
+private:
+	Accumulator acc;
+	double credit;
+	double rate;
+	double fee;
+	double getDebt() const{
+		double balance=getBalance();
+		return (balance<0 ? balance:0);
+	}
+public:
+	//constructor
+	CreditAccount(const Date &date,const std::string &id,double rate,double fee);
+	double getCredit() const{return credit;}
+	double getRate() const {return rate;}
+	double getFee() const {return fee;}
+	double getAvailableCredit() const{
+		if(getBalance()<0)
+			return credit+getBalance();
+		else
+			return credit;
+	}
+	//action
+	void deposit(const Date &date,double amount,const std::string &desc);
+	void withdraw(const Date &date,double amount,const std::string &desc);
+	void show() const;
+};
+#endif //CREDITACCOUNT_H
