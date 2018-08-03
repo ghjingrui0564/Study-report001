@@ -1,6 +1,6 @@
 //date.cpp
 #include"date.h"
-#include<iostrem>
+#include<iostream>
 #include<cstdlib>
 using namespace std;
 namespace{					//make the following definitions valid only in the current file
@@ -25,5 +25,5 @@ int Date::getMaxDay() const{
 		return DAYS_BEFORE_MONTH[month-1];
 }
 void Date::show() const{
-	cout<<getYear()<<"-"<<getmonth()<<"-"<<getDay();
+	cout<<getYear()<<"-"<<getMonth()<<"-"<<getDay();
 }
