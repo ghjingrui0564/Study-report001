@@ -1,8 +1,7 @@
 //SavingsAccount.h
 #ifndef _SAVINGSACCOUNT_H_
 #define _SAVINGSACCOUNT_H_
-#include"date.h"
-#include"accumulator.h"
+
 #include"account.h"
 #include<string>
 class SavingsAccount:public Account{
@@ -11,7 +10,7 @@ private:
 	double rate;						//the annual interest on deposits
 public:
 	//constructor
-	SavingsAccount(Date &date,const std::string &id,double rate);
+	SavingsAccount(const Date &date,const std::string &id,double rate);
 	double getRate()const {return rate;}
 	//action
 	void deposit (const Date &date,double amount,const std::string &desc);
