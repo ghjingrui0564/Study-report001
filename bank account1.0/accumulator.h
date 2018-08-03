@@ -1,3 +1,4 @@
+//accumulator.h
 #ifndef __ACCMULATOR_H__
 #define __ACCMULATOR_H__
 #include"date.h"
