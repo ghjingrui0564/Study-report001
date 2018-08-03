@@ -1,10 +1,10 @@
 //CreditAccount.h
 #ifndef _CREDITACCOUNT_H_
-#define _CREDITSACCOUNT_H_
-#include"date.h"
-#include"accumulator.h"
+#define _CREDITACCOUNT_H_
+
 #include"account.h"
 #include<string>
+
 class CreditAccount:public Account{
 private:
 	Accumulator acc;
@@ -17,7 +17,7 @@ private:
 	}
 public:
 	//constructor
-	CreditAccount(const Date &date,const std::string &id,double rate,double fee);
+	CreditAccount(const Date &date,const std::string &id,double credit,double rate,double fee);
 	double getCredit() const{return credit;}
 	double getRate() const {return rate;}
 	double getFee() const {return fee;}
@@ -30,6 +30,7 @@ public:
 	//action
 	void deposit(const Date &date,double amount,const std::string &desc);
 	void withdraw(const Date &date,double amount,const std::string &desc);
+	void settle(const Date &date);
 	void show() const;
 };
 #endif //CREDITACCOUNT_H
