@@ -1,6 +1,6 @@
 //date.h
-#ifndef _DATE_H_
-#define _DATE_H_
+#ifndef __DATE_H__
+#define __DATE_H__
 class Date{
 private:
 	int year;
@@ -20,4 +20,5 @@ public:
 	int distance(const Date &date) const{
 		return totalDays-date.totalDays;
 	}
-#endif
+};
+#endif //__DATE_H__
