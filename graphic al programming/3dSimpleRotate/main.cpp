@@ -54,7 +54,8 @@ int main()
 
 	//build and compile shader program
 	//---------------------------------
-	Shader ourShader("coordinate_system.vs", "coordinate_system.fs");
+	Shader ourShader("E:\Vs-Code\c++\Graphic\3dSimpleRotate\3dSimpleRotate\coordinate_system.vs", 
+		"E:\Vs-Code\c++\Graphic\3dSimpleRotate\3dSimpleRotate\coordinate_system.fs");
 
 	//set up vertex data ande configure vertex attributes
 	//----------------------------------------------------
