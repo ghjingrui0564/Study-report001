@@ -43,9 +43,8 @@ int main()
 
 	//glfw window creation
 	//--------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LIGHT1", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "learnOpenGL", NULL, NULL);
 
-	//GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "light1", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "failed to create glfw window" << std::endl;
